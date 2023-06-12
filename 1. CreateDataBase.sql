@@ -1,3 +1,3 @@
 -- -- Crear Base de Datos
 
-CREATE DATABASE carnaval_rio
+CREATE DATABASE carnaval_rio;

@@ -11,7 +11,7 @@
 -- ukr | unique en tabla reserva
 -- fkr | foreing key en tabla reserva
 
-ALTER TABLE cliente
+ALTER TABLE clientes
 ADD CONSTRAINT ckc_naciona      CHECK (nacionalidad IN ('n', 'e')),
 ADD CONSTRAINT ukc_dni		    UNIQUE (dni),
 ADD CONSTRAINT ukc_correo	    UNIQUE (correo);
@@ -27,7 +27,7 @@ ADD CONSTRAINT ckt_tipoEnt      CHECK (tipo_ent IN ('gp','gf','an','sl')),
 ADD CONSTRAINT ckt_sector       CHECK ((sector >= 1) AND (sector <= 11)),
 ADD CONSTRAINT ckt_calidad      CHECK ((calidad >= 1) AND (calidad <= 11)),
 ADD CONSTRAINT ckt_tipDesfile   CHECK (tipo_des IN ('e', 'c', 'a')),
-ADD CONSTRAINT ckt_ubi          CHECK (ubicacion IN ('a', 'b','c', 'a/b', 'c/d'));
+ADD CONSTRAINT ckt_ubi          CHECK (ubi IN ('a', 'b','c', 'a/b', 'c/d')),
 ADD CONSTRAINT pkt_tipos_ent    PRIMARY KEY (id_empresa, id_tipo);
 
 ALTER TABLE reserva
@@ -40,7 +40,7 @@ ADD CONSTRAINT fkes_escu        FOREIGN KEY    (id_region)      REFERENCES regio
 
 ALTER TABLE hist_grupo
 ADD CONSTRAINT ckh_grupo        CHECK (grupo IN ('a','e')),
-ADD CONSTRAINT pkh_histgr       PRIMARY KEY (id_escuela, fecha_ini);
+ADD CONSTRAINT pkh_histgr       PRIMARY KEY (id_escuela, fecha_ini),
 ADD CONSTRAINT fkh_histgr       FOREIGN KEY    (id_escuela)     REFERENCES escuelas_samba(id_escuela);
 
 ALTER TABLE protagonistas
@@ -51,8 +51,7 @@ ADD CONSTRAINT fkp_idesc        FOREIGN KEY    (id_escuela)     REFERENCES escue
 
 -- Aqui falta decir que el momo va a ser el hombre y reina la mujer creo que va a dar error de ejecucion
 ALTER TABLE carnavales_anual
-ADD CONSTRAINT fkca_momo        FOREIGN KEY    (id_momo)      REFERENCES protagonistas(id_momo);
-ADD CONSTRAINT fkca_reina       FOREIGN KEY    (id_reina)     REFERENCES protagonistas(id_reina);
+ADD CONSTRAINT fkca_momo        FOREIGN KEY    (id_prota)      REFERENCES protagonistas(id_prota);
 
 ALTER TABLE eventos
 ADD CONSTRAINT ckev_tipo        CHECK (tipo IN ('g','d')),
@@ -94,15 +93,3 @@ ADD CONSTRAINT fkhp_idtip        FOREIGN KEY (id_tipo)         REFERENCES tipos_
 ADD CONSTRAINT fken_ano          FOREIGN KEY (ano)             REFERENCES carnavales_anual(ano),
 ADD CONSTRAINT fkhp_ideve        FOREIGN KEY (id_evento)       REFERENCES eventos(id_evento),
 ADD CONSTRAINT fkhp_ident        FOREIGN KEY (id_entrada)      REFERENCES entrada(id_entrada);
-
-
-
-
-
-
-
-
-
-
-
-
