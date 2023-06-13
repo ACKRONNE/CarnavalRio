@@ -47,7 +47,7 @@ CREATE TABLE ama_tipos_entrada (
 	calidad			integer			NOT NULL,
 	tipo_des		char(1)			NOT NULL,
 	ubi				char(2),
-	PRIMARY KEY (id_empresa, id_tipo);	
+	PRIMARY KEY (id_empresa, id_tipo)	
 );
 
 CREATE TABLE ama_reserva (

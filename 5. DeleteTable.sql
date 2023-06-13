@@ -1,0 +1,17 @@
+DROP TABLE ama_clientes;
+DROP TABLE ama_lugares_evento;
+DROP TABLE ama_regiones_rio;
+DROP TABLE ama_empresas;
+DROP TABLE ama_autorizaciones;
+DROP TABLE ama_tipos_entrada;
+DROP TABLE ama_reserva;
+DROP TABLE ama_escuelas_samba;
+DROP TABLE ama_hist_grupo;
+DROP TABLE ama_protagonistas;
+DROP TABLE ama_carnavales_anual;
+DROP TABLE ama_eventos;
+DROP TABLE ama_participacion;
+DROP TABLE ama_rol;
+DROP TABLE ama_detalle_reserva;
+DROP TABLE ama_entrada;
+DROP TABLE ama_historico_precio;
