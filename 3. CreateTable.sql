@@ -41,7 +41,7 @@ CREATE TABLE ama_autorizaciones (
 
 CREATE TABLE ama_tipos_entrada (
 	id_empresa		integer,
-	id_tipo			integer,
+	id_tipo			integer			UNIQUE,
 	tipo_ent		char(2)			NOT NULL,
 	sector			integer			NOT NULL,
 	calidad			integer			NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE ama_escuelas_samba (
 
 CREATE TABLE ama_hist_grupo (
 	id_escuela		integer,
-	fecha_ini		date,
+	fecha_ini		date			UNIQUE,
 	grupo			char(1)			NOT NULL,
 	fecha_fin		date,
 	PRIMARY KEY		(id_escuela,fecha_ini)
@@ -84,7 +84,7 @@ CREATE TABLE ama_protagonistas (
 	apellido2		varchar(10)		NOT NULL,
 	genero			char(1)			NOT NULL,
 	fecha_nac		date			NOT NULL,
-	dni				integer			NOT NULL,
+	dni				integer			NOT NULL		UNIQUE,
 	id_escuela		integer,
 	PRIMARY KEY		(id_prota)
 );
@@ -93,13 +93,13 @@ CREATE TABLE ama_carnavales_anual (
 	ano				date,
 	fecha_ini		date			NOT NULL,
 	fecha_fin		date			NOT NULL,
-	id_prota			integer			NOT NULL,
+	id_prota		integer			NOT NULL,
 	PRIMARY KEY		(ano)
 );
 
 CREATE TABLE ama_eventos (
 	ano 			date,
-	id_evento		integer,
+	id_evento		integer			UNIQUE,
 	tipo			char(1)			NOT NULL,
 	fecha_ini		date			NOT NULL,
 	hora_ini		time			NOT NULL,
@@ -127,7 +127,7 @@ CREATE TABLE ama_rol (
 	id_prota		integer,
 	id_escuela		integer,
 	fecha_ini		date,
-	id_evento		integer,
+	id_evento		integer			UNIQUE,
 	nombre			varchar(1)		NOT NULL,
 	PRIMARY KEY (id_prota, id_escuela, fecha_ini,id_evento)
 );
@@ -142,7 +142,7 @@ CREATE TABLE ama_detalle_reserva (
 CREATE TABLE ama_entrada (
 	ano				date,
 	id_evento		integer,
-	id_entrada		integer,
+	id_entrada		integer			UNIQUE,
 	hora_emi		time			NOT NULL,
 	f_emision		date			NOT NULL,
 	id_reserva		integer			NOT NULL,

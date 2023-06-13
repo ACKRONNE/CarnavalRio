@@ -41,13 +41,12 @@ ADD CONSTRAINT fkes_escu        FOREIGN KEY    (id_region)      REFERENCES ama_r
 ADD CONSTRAINT ukes_idreg       UNIQUE (id_region);
 
 ALTER TABLE ama_hist_grupo
-ADD CONSTRAINT fkh_idescu       FOREIGN KEY    (id_escuela)     REFERENCES ama_escuelas_samba(id_escuela),
+FOREIGN KEY     (id_escuela)     REFERENCES ama_escuelas_samba(id_escuela),
 ADD CONSTRAINT ckh_grupo        CHECK (grupo IN ('a','e'));
 
 ALTER TABLE ama_protagonistas
 ADD CONSTRAINT fkp_idesc        FOREIGN KEY    (id_escuela)     REFERENCES ama_escuelas_samba(id_escuela),
 ADD CONSTRAINT ckp_gen          CHECK (genero IN ('f','m')),
-ADD CONSTRAINT ukp_dni          UNIQUE (dni),
 ADD CONSTRAINT ukp_idesc        UNIQUE (id_escuela);
 
 ALTER TABLE ama_carnavales_anual
@@ -74,7 +73,7 @@ ADD CONSTRAINT ckro_name        CHECK (nombre IN ('c','m','p'));
 
 ALTER TABLE ama_detalle_reserva
 ADD CONSTRAINT fkde_idres       FOREIGN KEY (id_reserva)       REFERENCES ama_reserva(id_reserva),
-ADD CONSTRAINT fkde_idemp       FOREIGN KEY (id_empresa)       REFERENCES ama_empresa(id_empresa);
+ADD CONSTRAINT fkde_idemp       FOREIGN KEY (id_empresa)       REFERENCES ama_empresas(id_empresa);
 
 ALTER TABLE ama_entrada
 ADD CONSTRAINT fken_ano          FOREIGN KEY (ano)             REFERENCES ama_carnavales_anual(ano),
@@ -83,7 +82,7 @@ ADD CONSTRAINT fkde_idres        FOREIGN KEY (id_reserva)      REFERENCES ama_re
 ADD CONSTRAINT uken_idres        UNIQUE      (id_reserva);
 
 ALTER TABLE ama_historico_precio
-ADD CONSTRAINT fkhp_idemp        FOREIGN KEY (id_empresa)      REFERENCES ama_empresa(id_empresa),
+ADD CONSTRAINT fkhp_idemp        FOREIGN KEY (id_empresa)      REFERENCES ama_empresas(id_empresa),
 ADD CONSTRAINT fkhp_idtip        FOREIGN KEY (id_tipo)         REFERENCES ama_tipos_entrada(id_tipo),
 ADD CONSTRAINT fken_ano          FOREIGN KEY (ano)             REFERENCES ama_carnavales_anual(ano),
 ADD CONSTRAINT fkhp_ideve        FOREIGN KEY (id_evento)       REFERENCES ama_eventos(id_evento),
