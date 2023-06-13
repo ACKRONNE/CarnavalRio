@@ -145,7 +145,7 @@ CREATE TABLE ama_entrada (
 	id_entrada		integer							UNIQUE,
 	hora_emi		time			NOT NULL,
 	f_emision		date			NOT NULL,
-	id_reserva		integer			NOT NULL,
+	id_reserva		integer			NOT NULL		UNIQUE,
 	PRIMARY KEY (ano, id_evento, id_entrada)
 );
 
