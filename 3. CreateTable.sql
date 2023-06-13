@@ -1,6 +1,6 @@
 -- Crear Tablas
 
-CREATE TABLE clientes (
+CREATE TABLE ama_clientes (
 	id_cliente		integer	,
 	nombre			varchar(10) 	NOT NULL,
 	apellido1		varchar(10)		NOT NULL,
@@ -10,45 +10,47 @@ CREATE TABLE clientes (
 	dni				integer			NOT NULL,
 	correo			varchar(30)		NOT NULL,
 	PRIMARY KEY		(id_cliente)		
-	);
+);
 
-CREATE TABLE lugares_evento (
+CREATE TABLE ama_lugares_evento (
 	id_lugar		integer,
 	nombre			varchar(10) 	NOT NULL,
 	direccion		text			NOT NULL,
 	PRIMARY KEY		(id_lugar)
-	);
+);
 
-CREATE TABLE regiones_rio (
+CREATE TABLE ama_regiones_rio (
 	id_region		integer,
 	nombre			varchar(10) 	NOT NULL,
 	descripcion		text,
 	PRIMARY KEY		(id_region)
 );
 
-CREATE TABLE empresas (
+CREATE TABLE ama_empresas (
 	id_empresa		integer,
 	nombre			varchar(10) 	NOT NULL,
 	correo			varchar(30)		NOT NULL,
 	PRIMARY KEY		(id_empresa)
 );
 
-CREATE TABLE autorizaciones (
+CREATE TABLE ama_autorizaciones (
 	id_empresa 		integer,
-	cant_max		integer			NOT NULL
+	cant_max		integer			NOT NULL,
+	PRIMARY KEY		(id_empresa)
 );
 
-CREATE TABLE tipos_entrada (
+CREATE TABLE ama_tipos_entrada (
 	id_empresa		integer,
-	id_tipo			integer			NOT NULL,
+	id_tipo			integer,
 	tipo_ent		char(2)			NOT NULL,
 	sector			integer			NOT NULL,
 	calidad			integer			NOT NULL,
 	tipo_des		char(1)			NOT NULL,
-	ubi				char(2)			
+	ubi				char(2),
+	PRIMARY KEY (id_empresa, id_tipo);	
 );
 
-CREATE TABLE reserva (
+CREATE TABLE ama_reserva (
 	id_reserva		integer,
 	f_h_emi			timestamp		NOT NULL,
 	id_cliente		integer			NOT NULL,
@@ -57,7 +59,7 @@ CREATE TABLE reserva (
 	PRIMARY KEY		(id_reserva)		
 );
 
-CREATE TABLE escuelas_samba (
+CREATE TABLE ama_escuelas_samba (
 	id_escuela 		integer,
 	nombre_gres		varchar(30)		NOT NULL,
 	fecha_funda		date			NOT NULL,
@@ -67,14 +69,15 @@ CREATE TABLE escuelas_samba (
 	PRIMARY KEY		(id_escuela)
 );
 
-CREATE TABLE hist_grupo (
+CREATE TABLE ama_hist_grupo (
 	id_escuela		integer,
-	fecha_ini		integer			NOT NULL,
+	fecha_ini		date,
 	grupo			char(1)			NOT NULL,
-	fecha_fin		date
+	fecha_fin		date,
+	PRIMARY KEY		(id_escuela,fecha_ini)
 );
 
-CREATE TABLE protagonistas (
+CREATE TABLE ama_protagonistas (
 	id_prota		integer,
 	nombre			varchar(10)		NOT NULL,
 	apellido1		varchar(10)		NOT NULL,
@@ -82,10 +85,11 @@ CREATE TABLE protagonistas (
 	genero			char(1)			NOT NULL,
 	fecha_nac		date			NOT NULL,
 	dni				integer			NOT NULL,
-	id_escuela		integer
+	id_escuela		integer,
+	PRIMARY KEY		(id_prota)
 );
 
-CREATE TABLE carnavales_anual (
+CREATE TABLE ama_carnavales_anual (
 	ano				date,
 	fecha_ini		date			NOT NULL,
 	fecha_fin		date			NOT NULL,
@@ -93,9 +97,9 @@ CREATE TABLE carnavales_anual (
 	PRIMARY KEY		(ano)
 );
 
-CREATE TABLE eventos (
-	ano 			date			NOT NULL,
-	id_evento		integer			NOT NULL,
+CREATE TABLE ama_eventos (
+	ano 			date,
+	id_evento		integer,
 	tipo			char(1)			NOT NULL,
 	fecha_ini		date			NOT NULL,
 	hora_ini		time			NOT NULL,
@@ -103,50 +107,56 @@ CREATE TABLE eventos (
 	pago			char(1)			NOT NULL,
 	descripcion		text,
 	costo_reales	integer,
-	id_lugar		integer
+	id_lugar		integer,
+	PRIMARY KEY (ano, id_evento)
 );
 
-CREATE TABLE participacion (
-	id_escuela		integer			NOT NULL,
-	fecha_ini		date			NOT NULL,
-	id_evento		integer			NOT NULL,
+CREATE TABLE ama_participacion (
+	id_escuela		integer,
+	fecha_ini		date,
+	id_evento		integer,
 	hora_ini		time			NOT NULL,
 	orden_des		integer			NOT NULL,
 	posicion_fin	integer			NOT NULL,
 	tema_gen		varchar(20)		NOT NULL,
-	titu_letr		text			NOT NULL
+	titu_letr		text			NOT NULL,
+	PRIMARY KEY (id_escuela, fecha_ini, id_evento)
 );
 
-CREATE TABLE rol (
-	id_prota		integer			NOT NULL,
-	id_escuela		integer			NOT NULL,
-	fecha_ini		date			NOT NULL,
-	id_evento		integer			NOT NULL,
-	nombre			varchar(1)		NOT NULL
+CREATE TABLE ama_rol (
+	id_prota		integer,
+	id_escuela		integer,
+	fecha_ini		date,
+	id_evento		integer,
+	nombre			varchar(1)		NOT NULL,
+	PRIMARY KEY (id_prota, id_escuela, fecha_ini,id_evento)
 );
 
-CREATE TABLE detalle_reserva (
-	id_reserva		integer			NOT NULL,
-	id_empresa		integer			NOT NULL,
-	cantidad		integer			NOT NULL
+CREATE TABLE ama_detalle_reserva (
+	id_reserva		integer,
+	id_empresa		integer,
+	cantidad		integer			NOT NULL,
+	PRIMARY KEY (id_reserva, id_empresa)
 );
 
-CREATE TABLE entrada (
-	ano				date			NOT NULL,
-	id_evento		integer			NOT NULL,
-	id_entrada		integer			NOT NULL,
+CREATE TABLE ama_entrada (
+	ano				date,
+	id_evento		integer,
+	id_entrada		integer,
 	hora_emi		time			NOT NULL,
 	f_emision		date			NOT NULL,
-	id_reserva		integer			NOT NULL
+	id_reserva		integer			NOT NULL,
+	PRIMARY KEY (ano, id_evento, id_entrada)
 );
 
-CREATE TABLE historico_precio (
-	id_empresa		integer			NOT NULL,
-	id_tipo			integer			NOT NULL,
-	ano	   			date			NOT NULL,
-	id_evento	    integer			NOT NULL,
-	id_entrada	   	integer			NOT NULL,
-	fecha_inicio	date 			NOT NULL,
+CREATE TABLE ama_historico_precio (
+	id_empresa		integer,
+	id_tipo			integer,
+	ano	   			date,
+	id_evento	    integer,
+	id_entrada	   	integer,
+	fecha_inicio	date,
 	costo_reales	integer			NOT NULL,
-	fecha_fin		date
+	fecha_fin		date,
+	PRIMARY KEY (id_empresa, id_tipo, ano, id_evento, id_entrada, fecha_inicio)
 );
