@@ -33,6 +33,8 @@ CREATE TABLE ama_empresas (
 	PRIMARY KEY		(id_empresa)
 );
 
+-- S O L O  U N A (1)  F O R E I N G  K E Y
+
 CREATE TABLE ama_autorizaciones (
 	id_empresa 		SERIAL,
 	cant_max		integer			NOT NULL,
@@ -40,7 +42,7 @@ CREATE TABLE ama_autorizaciones (
 );
 
 CREATE TABLE ama_tipos_entrada (
-	id_empresa		SERIAL,
+	id_empresa		integer,
 	id_tipo			SERIAL			UNIQUE,
 	tipo_ent		char(2)			NOT NULL		CHECK (tipo_ent IN ('gp','gf','an','sl')),
 	sector			integer			NOT NULL		CHECK ((sector >= 1) AND (sector <= 11)),
@@ -88,6 +90,8 @@ CREATE TABLE ama_protagonistas (
 	id_escuela		integer							UNIQUE,
 	PRIMARY KEY		(id_prota)
 );
+
+-- S O L O  D O S  O  M A S  F O R E I N G  K E Y
 
 CREATE TABLE ama_carnavales_anual (
 	ano				date,
