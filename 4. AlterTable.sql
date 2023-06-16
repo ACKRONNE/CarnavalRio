@@ -14,7 +14,7 @@
 -- ukes| unique en tabla escuelas
 
 ALTER TABLE ama_autorizaciones
-ADD CONSTRAINT  fka_auto_emp    FOREIGN KEY     (id_empresa)    REFERENCES  ama_empresas (id_empresa);
+ADD CONSTRAINT fka_auto_emp    FOREIGN KEY     (id_empresa)    REFERENCES  ama_empresas (id_empresa);
 
 ALTER TABLE ama_tipos_entrada
 ADD CONSTRAINT fkt_emp_tip      FOREIGN KEY     (id_empresa)    REFERENCES  ama_empresas (id_empresa);
