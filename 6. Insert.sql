@@ -1,17 +1,17 @@
--- Inserts
+-- I N S E R C C I O N  D E  D A T O S
 
-INSERT INTO asm_clientes 
-VALUES(DEFAULT,'Juan','Perez','Garcia','n','32883',34534646,'juan.perez@gmail.com'),
-      (DEFAULT,'Maria','Lopez','Sandoval','e','31250',98765321,'maria.lopez@hotmail.com'),
-      (DEFAULT,'Pedro','Rodriguez','Fernandez','n','33678',46789012,'pedro.fernandez@outlook.com'),
-      (DEFAULT,'Laura','Ramirez','Santos','n','32452',32198765,'laura.ramirez@gmail.com'),
-      (DEFAULT,'Carlos','Gonzalez','Perez','e','35326',21087654,'carlos.gonzalez@apple.com'),
-      (DEFAULT,'Gabriela','Ortiz','Gomez','n','32601',87654210,'gabriela.ortiz@hotmail.com'),
-      (DEFAULT,'Ricardo','Morales','Hernandez','n','35780',24532890,'ricardo.morales@outlook.com'),
-      (DEFAULT,'Luis','Mendez','Reyes','n','34188',54321098,'luis.mendez@apple.com'),
-      (DEFAULT,'Alejandro','Vargas','Mendoza','n','33297',78912345,'alejandro.vargas@gmail.com'),
-      (DEFAULT,'Manuel','Flores','Lopez','e','36139',890123456,'manuel.flores@apple.com'),
-      (DEFAULT,'Carolina','Ramos','Morales','n','35275',45678901,'carolina.ramos@outlook.com');
+INSERT INTO ama_clientes 
+VALUES(DEFAULT,'Juan','Perez','Garcia','n','1990-01-10',345346456,'juan.perez@gmail.com'),
+      (DEFAULT,'Maria','Lopez','Sandoval','e','1985-07-22',987654321,'maria.lopez@hotmail.com'),
+      (DEFAULT,'Pedro','Rodriguez','Fernandez','n','1992-03-15',456789012,'pedro.fernandez@outlook.com'),
+      (DEFAULT,'Laura','Ramirez','Santos','n','1988-11-05',321098765,'laura.ramirez@gmail.com'),
+      (DEFAULT,'Carlos','Gonzalez','Perez','e','1996-09-18',210987654,'carlos.gonzalez@apple.com'),
+      (DEFAULT,'Gabriela','Ortiz','Gomez','n','1989-04-03',876543210,'gabriela.ortiz@hotmail.com'),
+      (DEFAULT,'Ricardo','Morales','Hernandez','n','1997-12-16',234567890,'ricardo.morales@outlook.com'),
+      (DEFAULT,'Luis','Mendez','Reyes','n','1993-08-07',543210987,'luis.mendez@apple.com'),
+      (DEFAULT,'Alejandro','Vargas','Mendoza','n','1991-02-28',789012345,'alejandro.vargas@gmail.com'),
+      (DEFAULT,'Manuel','Flores','Lopez','e','1998-12-10',890123456,'manuel.flores@apple.com'),
+      (DEFAULT,'Carolina','Ramos','Morales','n','1996-07-29',456789012,'carolina.ramos@outlook.com');
 
 INSERT INTO ama_lugares_evento 
 VALUES(
@@ -41,18 +41,10 @@ VALUES(458,5000),
       (192,2000),
       (347,5000);    
 
-INSERT INTO ama_tipos_entrada 
-VALUES(DEFAULT,DEFAULT,gp,3,8,'e','a'),
-      (DEFAULT,DEFAULT,gf,5,7,'c','b'),
-      (DEFAULT,DEFAULT,an,2,4,'a','c'),
-      (DEFAULT,DEFAULT,sl,9,11,'e','a/b'),
-      (DEFAULT,DEFAULT,gf,1,6,'c','c/d'),
-      (DEFAULT,DEFAULT,an,4,9,'a','b'),
-      (DEFAULT,DEFAULT,gp,7,3,'c','a'),
-      (DEFAULT,DEFAULT,sl,10,5,'e','a/b'),
-      (DEFAULT,DEFAULT,an,6,2,'a','c');
+INSERT INTO ama_tipos_entradas 
+VALUES(
 
-INSERT INTO ama_reserva 
+INSERT INTO ama_reservas 
 VALUES(967,'40558',DEFAULT,1000.25,'40579'),
       (128,'41090',DEFAULT,2500.75,'41105'),
       (359,'41376',DEFAULT,1200.60,'41399'),
@@ -66,25 +58,25 @@ VALUES(967,'40558',DEFAULT,1000.25,'40579'),
 INSERT INTO ama_escuelas_samba 
 VALUES(    
 
-INSERT INTO ama_hist_grupo 
+INSERT INTO ama_hist_grupos 
 VALUES(    
 
 INSERT INTO ama_protagonistas 
 VALUES(    
 
-INSERT INTO ama_carnavales_anual 
+INSERT INTO ama_carnavales_anuales
 VALUES(    
 
 INSERT INTO ama_eventos 
 VALUES(    
 
-INSERT INTO ama_participacion 
+INSERT INTO ama_participaciones 
 VALUES(    
 
-INSERT INTO ama_rol 
+INSERT INTO ama_roles
 VALUES(
 
-INSERT INTO ama_detalle_reserva 
+INSERT INTO ama_detalles_reservas
 VALUES(967,458,2),
       (128,719,2),
       (359,603,1),
@@ -95,10 +87,10 @@ VALUES(967,458,2),
       (888,192,3),
       (943,347,2);   
 
-INSERT INTO ama_entrada 
+INSERT INTO ama_entradas
 VALUES(    
 
-INSERT INTO ama_historico_precio 
+INSERT INTO ama_historicos_precios 
 VALUES(    
 
     

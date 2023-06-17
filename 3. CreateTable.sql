@@ -41,7 +41,7 @@ CREATE TABLE ama_autorizaciones (
 	CONSTRAINT 		pk_auto			PRIMARY KEY		(id_empresa)
 );
 
-CREATE TABLE ama_tipos_entrada (
+CREATE TABLE ama_tipos_entradas (
 	id_empresa		integer,
 	id_tipo			SERIAL			UNIQUE,
 	tipo_ent		char(2)			NOT NULL		CHECK (tipo_ent IN ('gp','gf','an','sl')),
@@ -52,13 +52,13 @@ CREATE TABLE ama_tipos_entrada (
 	CONSTRAINT 		pk_tien			PRIMARY KEY (id_empresa, id_tipo)	
 );
 
-CREATE TABLE ama_reserva (
-	id_reserva		SERIAL,
+CREATE TABLE ama_reservas (
+	id_reservas		SERIAL,
 	f_h_emi			timestamp		NOT NULL,
 	id_cliente		integer			NOT NULL		UNIQUE,
 	monto_reales	real,
 	fecha_pago		date,
-	CONSTRAINT 		pk_rese			PRIMARY KEY		(id_reserva)		
+	CONSTRAINT 		pk_rese			PRIMARY KEY		(id_reservas)		
 );
 
 CREATE TABLE ama_escuelas_samba (
@@ -72,10 +72,10 @@ CREATE TABLE ama_escuelas_samba (
 	CONSTRAINT 		pk_escu			PRIMARY KEY		(id_escuela)
 );
 
-CREATE TABLE ama_hist_grupo (
+CREATE TABLE ama_hist_grupos (
 	id_escuela		SERIAL,
 	fecha_ini		date							UNIQUE,
-	grupo			char(1)			NOT NULL		CHECK (grupo IN ('a','e')),
+	grupos			char(1)			NOT NULL		CHECK (grupos IN ('a','e')),
 	fecha_fin		date,
 	CONSTRAINT 		pk_higr			PRIMARY KEY		(id_escuela,fecha_ini)
 );
@@ -94,7 +94,7 @@ CREATE TABLE ama_protagonistas (
 
 -- D O S  O  M A S  F O R E I N G  K E Y
 
-CREATE TABLE ama_carnavales_anual (
+CREATE TABLE ama_carnavales_anuales (
 	ano				date,
 	fecha_ini		date			NOT NULL,
 	fecha_fin		date			NOT NULL,
@@ -116,7 +116,7 @@ CREATE TABLE ama_eventos (
 	CONSTRAINT 		pk_even			PRIMARY KEY (ano, id_evento)
 );
 
-CREATE TABLE ama_participacion (
+CREATE TABLE ama_participaciones (
 	id_escuela		SERIAL,
 	fecha_ini		date,
 	id_evento		SERIAL,
@@ -128,7 +128,7 @@ CREATE TABLE ama_participacion (
 	CONSTRAINT 		pk_part			PRIMARY KEY (id_escuela, fecha_ini, id_evento)
 );
 
-CREATE TABLE ama_rol (
+CREATE TABLE ama_roles (
 	id_prota		SERIAL,
 	id_escuela		SERIAL,
 	fecha_ini		date,
@@ -138,24 +138,24 @@ CREATE TABLE ama_rol (
 	CONSTRAINT 		pk_rol			PRIMARY KEY (id_prota, id_escuela, fecha_ini,id_evento)
 );
 
-CREATE TABLE ama_detalle_reserva (
-	id_reserva		SERIAL,
+CREATE TABLE ama_detalles_reservas (
+	id_reservas		SERIAL,
 	id_empresa		SERIAL,
 	cantidad		integer			NOT NULL,
-	CONSTRAINT 		pk_dere			PRIMARY KEY (id_reserva, id_empresa)
+	CONSTRAINT 		pk_dere			PRIMARY KEY (id_reservas, id_empresa)
 );
 
-CREATE TABLE ama_entrada (
+CREATE TABLE ama_entradas (
 	ano				date,
 	id_evento		SERIAL,
 	id_entrada		SERIAL			UNIQUE,
 	hora_emi		time			NOT NULL,
 	f_emision		date			NOT NULL,
-	id_reserva		SERIAL			UNIQUE,
+	id_reservas		SERIAL			UNIQUE,
 	CONSTRAINT 		pk_entr			PRIMARY KEY (ano, id_evento, id_entrada)
 );
 
-CREATE TABLE ama_historico_precio (
+CREATE TABLE ama_historicos_precios (
 	id_empresa		SERIAL,
 	id_tipo			SERIAL,
 	ano	   			date,
