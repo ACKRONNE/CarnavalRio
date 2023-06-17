@@ -49,6 +49,7 @@ CREATE TABLE ama_tipos_entradas (
 	calidad			integer			NOT NULL		CHECK ((calidad >= 1) AND (calidad <= 11)),
 	tipo_des		char(1)			NOT NULL		CHECK (tipo_des IN ('e', 'c', 'a')),
 	ubi				char(2)							CHECK (ubi IN ('a', 'b','c', 'a/b', 'c/d')),
+	descripcion		text,
 	CONSTRAINT 		pk_tien			PRIMARY KEY (id_empresa, id_tipo)	
 );
 
@@ -92,7 +93,7 @@ CREATE TABLE ama_protagonistas (
 	CONSTRAINT 		pk_prot			PRIMARY KEY		(id_prota)
 );
 
--- D O S  O  M A S  F O R E I N G  K E Y
+-- D O S  O  M A S  F K
 
 CREATE TABLE ama_carnavales_anuales (
 	ano				date,
