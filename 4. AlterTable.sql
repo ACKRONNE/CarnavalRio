@@ -1,7 +1,7 @@
 -- M O D I F I C A C I O N  D E  T A B L A S
 
 ALTER TABLE ama_autorizaciones
-ADD CONSTRAINT fka_auto_emp    FOREIGN KEY     (id_empresa)    REFERENCES  ama_empresas (id_empresa);
+ADD CONSTRAINT fka_auto_emp     FOREIGN KEY     (id_empresa)    REFERENCES  ama_empresas (id_empresa);
 
 ALTER TABLE ama_tipos_entradas
 ADD CONSTRAINT fkt_emp_tip      FOREIGN KEY     (id_empresa)    REFERENCES  ama_empresas (id_empresa);
@@ -37,17 +37,17 @@ ADD CONSTRAINT fkro_fini        FOREIGN KEY (fecha_ini)         REFERENCES ama_h
 ADD CONSTRAINT fkro_ideve       FOREIGN KEY (id_evento)         REFERENCES ama_eventos(id_evento);
 
 ALTER TABLE ama_detalles_reservas
-ADD CONSTRAINT fkde_idres       FOREIGN KEY (id_reservas)        REFERENCES ama_reservas(id_reservas),
+ADD CONSTRAINT fkde_idres       FOREIGN KEY (id_reservas)       REFERENCES ama_reservas(id_reservas),
 ADD CONSTRAINT fkde_idemp       FOREIGN KEY (id_empresa)        REFERENCES ama_empresas(id_empresa);
 
 ALTER TABLE ama_entradas
-ADD CONSTRAINT fken_ano          FOREIGN KEY (ano)              REFERENCES ama_carnavales_anuales(ano),
-ADD CONSTRAINT fken_ideve        FOREIGN KEY (id_evento)        REFERENCES ama_eventos(id_evento),
-ADD CONSTRAINT fken_idres        FOREIGN KEY (id_reservas)       REFERENCES ama_reservas(id_reservas);
+ADD CONSTRAINT fken_ano         FOREIGN KEY (ano)               REFERENCES ama_carnavales_anuales(ano),
+ADD CONSTRAINT fken_ideve       FOREIGN KEY (id_evento)         REFERENCES ama_eventos(id_evento),
+ADD CONSTRAINT fken_idres       FOREIGN KEY (id_reservas)       REFERENCES ama_reservas(id_reservas);
 
 ALTER TABLE ama_historicos_precios
-ADD CONSTRAINT fkhp_idemp        FOREIGN KEY (id_empresa)       REFERENCES ama_empresas(id_empresa),
-ADD CONSTRAINT fkhp_idtip        FOREIGN KEY (id_tipo)          REFERENCES ama_tipos_entradas(id_tipo),
-ADD CONSTRAINT fkhp_ano          FOREIGN KEY (ano)              REFERENCES ama_carnavales_anuales(ano),
-ADD CONSTRAINT fkhp_ideve        FOREIGN KEY (id_evento)        REFERENCES ama_eventos(id_evento),
-ADD CONSTRAINT fkhp_ident        FOREIGN KEY (id_entrada)       REFERENCES ama_entradas(id_entrada);
+ADD CONSTRAINT fkhp_idemp       FOREIGN KEY (id_empresa)        REFERENCES ama_empresas(id_empresa),
+ADD CONSTRAINT fkhp_idtip       FOREIGN KEY (id_tipo)           REFERENCES ama_tipos_entradas(id_tipo),
+ADD CONSTRAINT fkhp_ano         FOREIGN KEY (ano)               REFERENCES ama_carnavales_anuales(ano),
+ADD CONSTRAINT fkhp_ideve       FOREIGN KEY (id_evento)         REFERENCES ama_eventos(id_evento),
+ADD CONSTRAINT fkhp_ident       FOREIGN KEY (id_entrada)        REFERENCES ama_entradas(id_entrada);

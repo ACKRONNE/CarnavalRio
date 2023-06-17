@@ -28,7 +28,7 @@ CREATE TABLE ama_regiones_rio (
 
 CREATE TABLE ama_empresas (
 	id_empresa		SERIAL,
-	nombre			varchar(10) 	NOT NULL		UNIQUE,
+	nombre			varchar(21) 	NOT NULL		UNIQUE,
 	correo			varchar(30)		NOT NULL		UNIQUE,
 	CONSTRAINT 		pk_empe			PRIMARY KEY		(id_empresa)
 );
