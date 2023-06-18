@@ -75,9 +75,9 @@ CREATE TABLE ama_escuelas_samba (
 
 CREATE TABLE ama_hist_grupos (
 	id_escuela		integer,
-	fecha_ini		date,
+	fecha_ini		integer,
 	grupos			char			NOT NULL		CHECK (grupos IN ('a','e')),
-	fecha_fin		date,
+	fecha_fin		date			UNIQUE,
 	CONSTRAINT 		pk_higr			PRIMARY KEY		(id_escuela,fecha_ini)
 );
 
@@ -120,7 +120,7 @@ CREATE TABLE ama_eventos (
 
 CREATE TABLE ama_participaciones (
 	id_escuela		integer,
-	fecha_ini		date,
+	fecha_ini		integer,
 	id_evento		integer,
 	hora_ini		time			NOT NULL,
 	orden_des		integer			NOT NULL,
