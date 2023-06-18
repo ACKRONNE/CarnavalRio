@@ -74,6 +74,12 @@ DROP COLUMN columna;
 ALTER TABLE ama_clientes
 DROP COLUMN apellido1;
 
+-- Eliminar una TABLA
+DROP TABLE tabla CASCADE;
+
+-- → Ejemplo ←
+DROP TABLE ama_clientes CASCADE;
+
 -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------
 

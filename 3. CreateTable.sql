@@ -4,7 +4,7 @@ CREATE TABLE ama_clientes (
 	id_cliente		SERIAL,
 	nombre			varchar(10) 	NOT NULL,
 	apellido1		varchar(10)		NOT NULL,
-	nacionalidad	char(1)			NOT NULL		CHECK (nacionalidad IN ('n', 'e'))		DEFAULT 'n',
+	nacionalidad	char			NOT NULL		CHECK (nacionalidad IN ('n','e')),
 	fecha_nac		date			NOT NULL,		
 	dni				integer			NOT NULL		UNIQUE,
 	correo			varchar(30)		NOT NULL		UNIQUE,
@@ -14,14 +14,14 @@ CREATE TABLE ama_clientes (
 
 CREATE TABLE ama_lugares_evento (
 	id_lugar		SERIAL,
-	nombre			varchar(10) 	NOT NULL,
+	nombre			text 			NOT NULL,
 	direccion		text			NOT NULL,
 	CONSTRAINT 		pk_luga			PRIMARY KEY		(id_lugar)
 );
 
 CREATE TABLE ama_regiones_rio (
 	id_region		SERIAL,
-	nombre			varchar(10) 	NOT NULL,
+	nombre			text 			NOT NULL,
 	descripcion		text,
 	CONSTRAINT 		pk_reri			PRIMARY KEY		(id_region)
 );
@@ -44,11 +44,11 @@ CREATE TABLE ama_autorizaciones (
 CREATE TABLE ama_tipos_entradas (
 	id_empresa		integer,
 	id_tipo			SERIAL			UNIQUE,
-	tipo_ent		char(2)			NOT NULL		CHECK (tipo_ent IN ('gp','gf','an','sl')),
+	tipo_ent		varchar(2)		NOT NULL		CHECK (tipo_ent IN ('gp','gf','an','sl')),
 	sector			integer			NOT NULL		CHECK ((sector >= 1) AND (sector <= 11)),
 	calidad			integer			NOT NULL		CHECK ((calidad >= 1) AND (calidad <= 11)),
-	tipo_des		char(1)			NOT NULL		CHECK (tipo_des IN ('e', 'c', 'a')),
-	ubi				char(2)							CHECK (ubi IN ('a', 'b','c', 'a/b', 'c/d')),
+	tipo_des		char			NOT NULL		CHECK (tipo_des IN ('e', 'c', 'a')),
+	ubi				varchar(3)						CHECK (ubi IN ('a', 'b','c', 'a/b', 'c/d')),
 	descripcion		text,
 	CONSTRAINT 		pk_tien			PRIMARY KEY (id_empresa, id_tipo)	
 );
@@ -74,9 +74,9 @@ CREATE TABLE ama_escuelas_samba (
 );
 
 CREATE TABLE ama_hist_grupos (
-	id_escuela		SERIAL,
+	id_escuela		integer,
 	fecha_ini		date							UNIQUE,
-	grupos			char(1)			NOT NULL		CHECK (grupos IN ('a','e')),
+	grupos			char			NOT NULL		CHECK (grupos IN ('a','e')),
 	fecha_fin		date,
 	CONSTRAINT 		pk_higr			PRIMARY KEY		(id_escuela,fecha_ini)
 );
@@ -85,7 +85,7 @@ CREATE TABLE ama_protagonistas (
 	id_prota		SERIAL,
 	nombre			varchar(10)		NOT NULL,
 	apellido1		varchar(10)		NOT NULL,
-	genero			char(1)			NOT NULL		CHECK (genero IN ('f','m')),
+	genero			char			NOT NULL		CHECK (genero IN ('f','m')),
 	fecha_nac		date			NOT NULL,
 	dni				integer			NOT NULL		UNIQUE,
 	id_escuela		integer							UNIQUE,
@@ -96,7 +96,7 @@ CREATE TABLE ama_protagonistas (
 -- D O S  O  M A S  F K
 
 CREATE TABLE ama_carnavales_anuales (
-	ano				date,
+	ano				integer,
 	fecha_ini		date			NOT NULL,
 	fecha_fin		date			NOT NULL,
 	id_prota		integer			NOT NULL,
@@ -104,13 +104,13 @@ CREATE TABLE ama_carnavales_anuales (
 );
 
 CREATE TABLE ama_eventos (
-	ano 			date,
+	ano 			integer,
 	id_evento		SERIAL			UNIQUE,
-	tipo			char(1)			NOT NULL,
+	tipo			char			NOT NULL		CHECK (tipo IN ('g','d')),
 	fecha_ini		date			NOT NULL,
 	hora_ini		time			NOT NULL,					
-	tipo_audi		varchar(3)		NOT NULL		CHECK (tipo IN ('g','d')),
-	pago			char(1)			NOT NULL		CHECK (pago IN ('s','n'))		DEFAULT 'n',
+	tipo_audi		integer			NOT NULL,
+	pago			char			NOT NULL		CHECK (pago IN ('s','n'))		DEFAULT 'n',
 	descripcion		text,
 	costo_reales	real,
 	id_lugar		integer							UNIQUE,
@@ -118,9 +118,9 @@ CREATE TABLE ama_eventos (
 );
 
 CREATE TABLE ama_participaciones (
-	id_escuela		SERIAL,
+	id_escuela		integer,
 	fecha_ini		date,
-	id_evento		SERIAL,
+	id_evento		integer,
 	hora_ini		time			NOT NULL,
 	orden_des		integer			NOT NULL,
 	posicion_fin	integer			NOT NULL,
@@ -130,37 +130,37 @@ CREATE TABLE ama_participaciones (
 );
 
 CREATE TABLE ama_roles (
-	id_prota		SERIAL,
-	id_escuela		SERIAL,
+	id_prota		integer,
+	id_escuela		integer,
 	fecha_ini		date,
-	id_evento		SERIAL			UNIQUE,
-	nombre			varchar(1)		NOT NULL		CHECK (nombre IN ('c','m','p')),
+	id_evento		integer			UNIQUE,
+	nombre			varchar			NOT NULL		CHECK (nombre IN ('c','m','p')),
 	CONSTRAINT 		pk_rol			PRIMARY KEY (id_prota, id_escuela, fecha_ini,id_evento)
 );
 
 CREATE TABLE ama_detalles_reservas (
-	id_reservas		SERIAL,
-	id_empresa		SERIAL,
+	id_reservas		integer,
+	id_empresa		integer,
 	cantidad		integer			NOT NULL,
 	CONSTRAINT 		pk_dere			PRIMARY KEY (id_reservas, id_empresa)
 );
 
 CREATE TABLE ama_entradas (
-	ano				date,
-	id_evento		SERIAL,
+	ano				integer,
+	id_evento		integer,
 	id_entrada		SERIAL			UNIQUE,
 	hora_emi		time			NOT NULL,
 	f_emision		date			NOT NULL,
-	id_reservas		SERIAL			UNIQUE,
+	id_reservas		integer			UNIQUE,
 	CONSTRAINT 		pk_entr			PRIMARY KEY (ano, id_evento, id_entrada)
 );
 
 CREATE TABLE ama_historicos_precios (
-	id_empresa		SERIAL,
-	id_tipo			SERIAL,
-	ano	   			date,
-	id_evento	    SERIAL,
-	id_entrada	   	SERIAL,
+	id_empresa		integer,
+	id_tipo			integer,
+	ano	   			integer,
+	id_evento	    integer,
+	id_entrada	   	integer,
 	fecha_inicio	date,
 	costo_reales	real			NOT NULL,
 	fecha_fin		date,
