@@ -64,18 +64,18 @@ CREATE TABLE ama_reservas (
 
 CREATE TABLE ama_escuelas_samba (
 	id_escuela 		SERIAL,
-	nombre_gres		varchar(30)		NOT NULL,
+	nombre_gres		text			NOT NULL,
 	fecha_funda		date			NOT NULL,
 	direccion		text			NOT NULL,
-	color			varchar(15)		NOT NULL,
+	color			text			NOT NULL,
 	resumen_hist	text			NOT NULL,
-	id_region		integer			NOT	NULL		UNIQUE,
+	id_region		integer			NOT	NULL,
 	CONSTRAINT 		pk_escu			PRIMARY KEY		(id_escuela)
 );
 
 CREATE TABLE ama_hist_grupos (
 	id_escuela		integer,
-	fecha_ini		date							UNIQUE,
+	fecha_ini		date,
 	grupos			char			NOT NULL		CHECK (grupos IN ('a','e')),
 	fecha_fin		date,
 	CONSTRAINT 		pk_higr			PRIMARY KEY		(id_escuela,fecha_ini)
@@ -83,13 +83,13 @@ CREATE TABLE ama_hist_grupos (
 
 CREATE TABLE ama_protagonistas (
 	id_prota		SERIAL,
-	nombre			varchar(10)		NOT NULL,
-	apellido1		varchar(10)		NOT NULL,
+	nombre			varchar(15)		NOT NULL,
+	apellido1		varchar(15)		NOT NULL,
 	genero			char			NOT NULL		CHECK (genero IN ('f','m')),
 	fecha_nac		date			NOT NULL,
 	dni				integer			NOT NULL		UNIQUE,
-	id_escuela		integer							UNIQUE,
-	apellido2		varchar(10),
+	id_escuela		integer,
+	apellido2		varchar(15),
 	CONSTRAINT 		pk_prot			PRIMARY KEY		(id_prota)
 );
 
@@ -99,7 +99,8 @@ CREATE TABLE ama_carnavales_anuales (
 	ano				integer,
 	fecha_ini		date			NOT NULL,
 	fecha_fin		date			NOT NULL,
-	id_prota		integer			NOT NULL,
+	id_momo			integer			NOT NULL,
+	id_reina		integer			NOT NULL,
 	CONSTRAINT 		pk_carn			PRIMARY KEY		(ano)
 );
 
@@ -113,7 +114,7 @@ CREATE TABLE ama_eventos (
 	pago			char			NOT NULL		CHECK (pago IN ('s','n'))		DEFAULT 'n',
 	descripcion		text,
 	costo_reales	real,
-	id_lugar		integer							UNIQUE,
+	id_lugar		integer,
 	CONSTRAINT 		pk_even			PRIMARY KEY (ano, id_evento)
 );
 
@@ -132,9 +133,9 @@ CREATE TABLE ama_participaciones (
 CREATE TABLE ama_roles (
 	id_prota		integer,
 	id_escuela		integer,
-	fecha_ini		date,
+	fecha_ini		integer,
 	id_evento		integer			UNIQUE,
-	nombre			varchar			NOT NULL		CHECK (nombre IN ('c','m','p')),
+	nombre			varchar			NOT NULL		CHECK (nombre IN ('rey momo','reina del carnaval','carnavalesco','mestre-sala','porta-bandeira')),
 	CONSTRAINT 		pk_rol			PRIMARY KEY (id_prota, id_escuela, fecha_ini,id_evento)
 );
 
