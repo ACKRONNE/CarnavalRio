@@ -4,11 +4,11 @@ CREATE TABLE ama_clientes (
 	id_cliente		SERIAL,
 	nombre			varchar(10) 	NOT NULL,
 	apellido1		varchar(10)		NOT NULL,
-	apellido2		varchar(10)		NOT NULL,
 	nacionalidad	char(1)			NOT NULL		CHECK (nacionalidad IN ('n', 'e'))		DEFAULT 'n',
 	fecha_nac		date			NOT NULL,		
 	dni				integer			NOT NULL		UNIQUE,
 	correo			varchar(30)		NOT NULL		UNIQUE,
+	apellido2		varchar(10),
 	CONSTRAINT 		pk_clie			PRIMARY KEY		(id_cliente)		
 );
 
@@ -85,11 +85,11 @@ CREATE TABLE ama_protagonistas (
 	id_prota		SERIAL,
 	nombre			varchar(10)		NOT NULL,
 	apellido1		varchar(10)		NOT NULL,
-	apellido2		varchar(10)		NOT NULL,
 	genero			char(1)			NOT NULL		CHECK (genero IN ('f','m')),
 	fecha_nac		date			NOT NULL,
 	dni				integer			NOT NULL		UNIQUE,
 	id_escuela		integer							UNIQUE,
+	apellido2		varchar(10),
 	CONSTRAINT 		pk_prot			PRIMARY KEY		(id_prota)
 );
 
@@ -112,7 +112,7 @@ CREATE TABLE ama_eventos (
 	tipo_audi		varchar(3)		NOT NULL		CHECK (tipo IN ('g','d')),
 	pago			char(1)			NOT NULL		CHECK (pago IN ('s','n'))		DEFAULT 'n',
 	descripcion		text,
-	costo_reales	integer,
+	costo_reales	real,
 	id_lugar		integer							UNIQUE,
 	CONSTRAINT 		pk_even			PRIMARY KEY (ano, id_evento)
 );
@@ -135,7 +135,6 @@ CREATE TABLE ama_roles (
 	fecha_ini		date,
 	id_evento		SERIAL			UNIQUE,
 	nombre			varchar(1)		NOT NULL		CHECK (nombre IN ('c','m','p')),
-	rol				integer			NOT NULL		CHECK ((rol >= 1) AND (rol <= 5)),
 	CONSTRAINT 		pk_rol			PRIMARY KEY (id_prota, id_escuela, fecha_ini,id_evento)
 );
 
@@ -163,7 +162,7 @@ CREATE TABLE ama_historicos_precios (
 	id_evento	    SERIAL,
 	id_entrada	   	SERIAL,
 	fecha_inicio	date,
-	costo_reales	integer			NOT NULL,
+	costo_reales	real			NOT NULL,
 	fecha_fin		date,
 	CONSTRAINT 		pk_hipr			PRIMARY KEY (id_empresa, id_tipo, ano, id_evento, id_entrada, fecha_inicio)
 );
