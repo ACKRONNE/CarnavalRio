@@ -49,7 +49,6 @@ CREATE TABLE ama_tipos_entradas (
 	calidad			integer			NOT NULL		CHECK ((calidad >= 1) AND (calidad <= 11)),
 	tipo_des		char			NOT NULL		CHECK (tipo_des IN ('e', 'c', 'a')),
 	ubi				varchar(3)						CHECK (ubi IN ('a', 'b','c', 'a/b', 'c/d')),
-	descripcion		text,
 	CONSTRAINT 		pk_tien			PRIMARY KEY (id_empresa, id_tipo)	
 );
 
@@ -75,10 +74,10 @@ CREATE TABLE ama_escuelas_samba (
 
 CREATE TABLE ama_hist_grupos (
 	id_escuela		integer,
-	id_histg		SERIAL			UNIQUE,
+	id_histg		SERIAL							UNIQUE,
 	fecha_ini		date,
 	grupos			char			NOT NULL		CHECK (grupos IN ('a','e')),
-	fecha_fin		date			UNIQUE,
+	fecha_fin		date							UNIQUE,
 	CONSTRAINT 		pk_higr			PRIMARY KEY		(id_escuela,id_histg)
 );
 
@@ -89,8 +88,8 @@ CREATE TABLE ama_protagonistas (
 	genero			char			NOT NULL		CHECK (genero IN ('f','m')),
 	fecha_nac		date			NOT NULL,
 	dni				integer			NOT NULL		UNIQUE,
-	id_escuela		integer,
 	apellido2		varchar(15),
+	id_escuela		integer,
 	CONSTRAINT 		pk_prot			PRIMARY KEY		(id_prota)
 );
 
@@ -143,8 +142,7 @@ CREATE TABLE ama_roles (
 CREATE TABLE ama_detalles_reservas (
 	id_reservas		integer,
 	id_empresa		integer,
-	cantidad		integer			NOT NULL,
-	CONSTRAINT 		pk_dere			PRIMARY KEY (id_reservas, id_empresa)
+ 	CONSTRAINT 		pk_dere			PRIMARY KEY (id_reservas, id_empresa)
 );
 
 CREATE TABLE ama_entradas (
