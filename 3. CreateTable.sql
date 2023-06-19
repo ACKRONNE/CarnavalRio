@@ -112,7 +112,7 @@ CREATE TABLE ama_eventos (
 	fecha_ini		date			NOT NULL,
 	hora_ini		time			NOT NULL,					
 	tipo_audi		integer			NOT NULL,
-	pago			char			NOT NULL		CHECK (pago IN ('s','n'))		DEFAULT 'n',
+	pago			char			NOT NULL		CHECK (pago IN ('s','n')),
 	descripcion		text,
 	costo_reales	real,
 	id_lugar		integer,
@@ -137,7 +137,7 @@ CREATE TABLE ama_roles (
 	id_histg		integer,
 	id_evento		integer,
 	nombre			varchar			NOT NULL		CHECK (nombre IN ('rey momo','reina del carnaval','carnavalesco','mestre-sala','porta-bandeira')),
-	CONSTRAINT 		pk_rol			PRIMARY KEY (id_prota, id_escuela, id_histg,id_evento)
+	CONSTRAINT 		pk_rol			PRIMARY KEY 	(id_prota, id_escuela, id_histg,id_evento)
 );
 
 CREATE TABLE ama_detalles_reservas (
@@ -150,10 +150,10 @@ CREATE TABLE ama_detalles_reservas (
 CREATE TABLE ama_entradas (
 	ano				integer,
 	id_evento		integer,
-	id_entrada		SERIAL			UNIQUE,
+	id_entrada		SERIAL							UNIQUE,
 	hora_emi		time			NOT NULL,
 	f_emision		date			NOT NULL,
-	id_reservas		integer			UNIQUE,
+	id_reservas		integer							UNIQUE,
 	CONSTRAINT 		pk_entr			PRIMARY KEY (ano, id_evento, id_entrada)
 );
 
