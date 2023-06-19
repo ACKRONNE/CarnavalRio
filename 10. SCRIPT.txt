@@ -142,6 +142,7 @@ CREATE TABLE ama_roles (
 CREATE TABLE ama_detalles_reservas (
 	id_reservas		integer,
 	id_empresa		integer,
+	cantidad		integer,
  	CONSTRAINT 		pk_dere			PRIMARY KEY (id_reservas, id_empresa)
 );
 
