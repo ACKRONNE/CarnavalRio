@@ -75,7 +75,7 @@ CREATE TABLE ama_escuelas_samba (
 
 CREATE TABLE ama_hist_grupos (
 	id_escuela		integer,
-	id_histg		SERIAL	UNIQUE,
+	id_histg		SERIAL			UNIQUE,
 	fecha_ini		date,
 	grupos			char			NOT NULL		CHECK (grupos IN ('a','e')),
 	fecha_fin		date			UNIQUE,
