@@ -28,13 +28,13 @@ ADD CONSTRAINT fkev_lug         FOREIGN KEY    (id_lugar)       REFERENCES ama_l
 
 ALTER TABLE ama_participaciones
 ADD CONSTRAINT fkpa_idesc       FOREIGN KEY (id_escuela)        REFERENCES ama_escuelas_samba(id_escuela),
-ADD CONSTRAINT fkpa_fini        FOREIGN KEY (fecha_ini)         REFERENCES ama_hist_grupos(fecha_ini),
+ADD CONSTRAINT fkpa_idhistg     FOREIGN KEY (id_histg)          REFERENCES ama_hist_grupos(id_histg),
 ADD CONSTRAINT fkpa_idev        FOREIGN KEY (id_evento)         REFERENCES ama_eventos(id_evento);
 
 ALTER TABLE ama_roles
 ADD CONSTRAINT fkro_idpro       FOREIGN KEY (id_prota)          REFERENCES ama_protagonistas(id_prota),
 ADD CONSTRAINT fkro_idesc       FOREIGN KEY (id_escuela)        REFERENCES ama_escuelas_samba(id_escuela),
-ADD CONSTRAINT fkro_fini        FOREIGN KEY (fecha_ini)         REFERENCES ama_hist_grupos(fecha_ini),
+ADD CONSTRAINT fkro_idhistg     FOREIGN KEY (id_histg)          REFERENCES ama_hist_grupos(id_histg),
 ADD CONSTRAINT fkro_ideve       FOREIGN KEY (id_evento)         REFERENCES ama_eventos(id_evento);
 
 ALTER TABLE ama_detalles_reservas

@@ -75,10 +75,11 @@ CREATE TABLE ama_escuelas_samba (
 
 CREATE TABLE ama_hist_grupos (
 	id_escuela		integer,
-	fecha_ini		integer,
+	id_histg		SERIAL	UNIQUE,
+	fecha_ini		date,
 	grupos			char			NOT NULL		CHECK (grupos IN ('a','e')),
 	fecha_fin		date			UNIQUE,
-	CONSTRAINT 		pk_higr			PRIMARY KEY		(id_escuela,fecha_ini)
+	CONSTRAINT 		pk_higr			PRIMARY KEY		(id_escuela,id_histg)
 );
 
 CREATE TABLE ama_protagonistas (
@@ -120,23 +121,23 @@ CREATE TABLE ama_eventos (
 
 CREATE TABLE ama_participaciones (
 	id_escuela		integer,
-	fecha_ini		integer,
+	id_histg		integer,
 	id_evento		integer,
 	hora_ini		time			NOT NULL,
 	orden_des		integer			NOT NULL,
 	posicion_fin	integer			NOT NULL,
-	tema_gen		varchar(20)		NOT NULL,
+	tema_gen		text			NOT NULL,
 	titu_letr		text			NOT NULL,
-	CONSTRAINT 		pk_part			PRIMARY KEY (id_escuela, fecha_ini, id_evento)
+	CONSTRAINT 		pk_part			PRIMARY KEY (id_escuela, id_histg, id_evento)
 );
 
 CREATE TABLE ama_roles (
 	id_prota		integer,
 	id_escuela		integer,
-	fecha_ini		integer,
-	id_evento		integer			UNIQUE,
+	id_histg		integer,
+	id_evento		integer,
 	nombre			varchar			NOT NULL		CHECK (nombre IN ('rey momo','reina del carnaval','carnavalesco','mestre-sala','porta-bandeira')),
-	CONSTRAINT 		pk_rol			PRIMARY KEY (id_prota, id_escuela, fecha_ini,id_evento)
+	CONSTRAINT 		pk_rol			PRIMARY KEY (id_prota, id_escuela, id_histg,id_evento)
 );
 
 CREATE TABLE ama_detalles_reservas (
