@@ -190,8 +190,8 @@ ALTER TABLE ama_protagonistas
 ADD CONSTRAINT fkp_idesc        FOREIGN KEY    (id_escuela)     REFERENCES ama_escuelas_samba(id_escuela);
 
 ALTER TABLE ama_carnavales_anuales
-ADD CONSTRAINT fkca_momo       FOREIGN KEY    (id_momo)      REFERENCES ama_protagonistas(id_prota),
-ADD CONSTRAINT fkca_reina      FOREIGN KEY    (id_reina)       	REFERENCES ama_protagonistas(id_prota);
+ADD CONSTRAINT fkca_momo        FOREIGN KEY    (id_momo)        REFERENCES ama_protagonistas(id_prota),
+ADD CONSTRAINT fkca_reina       FOREIGN KEY    (id_reina)       REFERENCES ama_protagonistas(id_prota);
 
 ALTER TABLE ama_eventos
 ADD CONSTRAINT fkev_ano         FOREIGN KEY    (ano)            REFERENCES ama_carnavales_anuales(ano),
